@@ -73,6 +73,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      endPoint = 'https://my-json-server.typicode.com/mnazarani/vue-form-components',
       categories: [
         'sustainability',
         'nature',

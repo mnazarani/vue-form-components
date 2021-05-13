@@ -1,14 +1,18 @@
-[
-    {
-        "id": 1,
-        "category": "animal welfare",
-        "title": "Animal Farm",
-        "description": "Very big animal farm",
-        "location": "Tomball",
-        "pets": 1,
-        "extras": {
-            "catering": true,
-            "music": true
+{
+    "events": [
+        {
+            "id": 1,
+            "category": "animal welfare",
+            "title": "Animal Farm",
+            "description": "Very big animal farm",
+            "location": "Tomball",
+            "pets": 1,
+            "extras": {
+                "catering": true,
+                "music": true
+            }
         }
-    }
-]
+    ]
+}    
+    
+    

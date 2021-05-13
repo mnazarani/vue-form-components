@@ -1,0 +1,38 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    [type='text'],
+    [type='email'],
+    [type='url'],
+    [type='password'],
+    [type='number'],
+    [type='date'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='search'],
+    [type='tel'],
+    [type='time'],
+    [type='week'],
+    [multiple],
+    textarea,
+    select {
+        @apply w-1/2 mb-2 placeholder-gray-400 placeholder-opacity-50 border-gray-300 rounded-lg 
+        shadow-sm focus:border-green-500 focus:ring-green-500
+    }
+    [type='checkbox'],
+    [type='radio'] {
+        @apply rounded border-gray-300 text-green-600 
+        focus:ring-green-500  
+    }
+    [type='radio'] {
+        @apply rounded-full
+    }
+
+    body {
+        @apply bg-gray-100
+    }
+}

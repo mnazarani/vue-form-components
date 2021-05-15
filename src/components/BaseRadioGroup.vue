@@ -15,6 +15,14 @@
         @update:modelValue="$emit('update:modelValue', $event)"
     />
     </component>
+    <p 
+        v-if="error" 
+        class="text-red-600 text-sm"
+        :id="'${uuid}-error'"
+        aria-live="assertive"
+    >
+        {{ error }}
+    </p>
 
   
 </template>
@@ -37,6 +45,10 @@ export default {
         vertical: {
             type: Boolean,
             default: false 
+        },
+        error: {
+            type: String,
+            default: ''
         }
     }
 

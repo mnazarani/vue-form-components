@@ -9,60 +9,75 @@
         :options="categories"
      />
 
-      <h3>Name & describe your event</h3>
+      <fieldset>
+        <legend class="text-gray-500 font-bold py-2">Name & describe your event</legend>
 
-      <BaseInput 
-        v-model="event.title"
-        label="Title"
-        type="text"
-      />
+        <BaseInput 
+          v-model="event.title"
+          label="Title"
+          type="text"
+        />
 
-      <BaseInput 
-        v-model="event.description"
-        label="Description"
-        type="text"
-      />
+        <BaseInput 
+          v-model="event.description"
+          label="Description"
+          type="text"
+        />
 
-      <h3>Where is your event?</h3>
+      </fieldset>
 
-      <BaseInput 
-        v-model="event.location"
-        label="Location"
-        type="text"
-      />
+      <fieldset>
+        <legend class="text-gray-500 font-bold py-2">Where is your event?</legend>
+
+        <BaseInput 
+          v-model="event.location"
+          label="Location"
+          type="text"
+        />
+      </fieldset>
       
-
-      <h3>Are pets allowed?</h3>
-      <div>
-        <BaseRadioGroup 
-          v-model="event.pets"
-          name="pets"
-          :options="petOptions"
-          vertical
-        />
-      </div>
       
+      <fieldset>
+        <legend class="text-gray-500 font-bold py-2">Pets</legend>
+         <p>Are pets allowed?</p>
+        <div>
+          <BaseRadioGroup 
+            v-model="event.pets"
+            name="pets"
+            :options="petOptions"
+            vertical
+          />
+        </div>
+      </fieldset>
 
-      <h3>Extras</h3>
-      <div>
-        <BaseCheckbox 
-            v-model="event.extras.catering"
-            label="Catering"
-        />
-      </div>
+     
+      <fieldset>
+         <h3 class="text-gray-500 font-bold py-2">Extras</h3>
+        <div>
+          <BaseCheckbox 
+              v-model="event.extras.catering"
+              label="Catering"
+          />
+        </div>
 
-      <div>
-        <BaseCheckbox 
-            v-model="event.extras.music"
-            label="Live music"
-        />
-      </div>
+        <div>
+          <BaseCheckbox 
+              v-model="event.extras.music"
+              label="Live music"
+          />
+        </div>
+      </fieldset>
+
+     
 
       <hr class="my-4">
 
-      {{ event }}
-
-      <button type="submit">Submit</button>
+      <button 
+        type="submit"
+        class="bg-green-500 hover:bg-green-700 text-gray-50 font-bold py-2 px-4 rounded"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
@@ -73,7 +88,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      endPoint = 'https://my-json-server.typicode.com/mnazarani/vue-form-components',
+      endPoint : 'https://my-json-server.typicode.com/mnazarani/vue-form-components/events',
       categories: [
         'sustainability',
         'nature',
@@ -102,7 +117,16 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log(this.event)
+      axios.post(
+        this.endPoint,
+        this.event
+      )
+      .then(response => {
+        console.log('Response', response)
+      })
+      .catch(err => {
+        console.log('Error', err)
+      })
     }
   }
 }

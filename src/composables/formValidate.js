@@ -49,8 +49,10 @@ export default function formValidate (propObj){
     // checks the whole form for validation
     // useful to employ before form submission
     const isFormValid = (state) => {
-        st$.formValid = true
+        st$.formValid = true  // global form flag - reset to true
         for (let prop in propObj){
+            // check if any prop has error or any required field is missing
+            // if any of it true then set the global flag to false
             if (st$[prop].error || (propObj[prop].required && state[prop] === '')) {
                 st$.formValid = false
                 return false

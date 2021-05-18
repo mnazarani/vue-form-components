@@ -1,14 +1,21 @@
 <template>
   <div class="w-5/6 mx-auto">
     <h1 class="text-center text-2xl font-bold text-gray-700">Create an event</h1>
-    <form class="w-3/4 mx-auto my-4 px-2" @submit.prevent="handleSubmit">
+    <form class="w-3/4 mx-auto my-4 px-2" @submit.prevent="handleSubmit" novalidate>
+
+    <p v-if="!st$.formValid" class="text-red-500">
+        Please fill all the 'required' fields
+    </p>
 
      <BaseSelect 
         label="Select a category"
         v-model="event.category"
         :options="categories"
-        @blur="v$.category.$touch()"
-        :error="v$.category.$error ? 'category is required' : null"
+        name="category"
+        required 
+        @blur="handleBlur"
+        @focus="handleFocus"
+        :error="st$.category.error ? st$.category.errorMessage : null"
      />
 
       <fieldset>
@@ -18,12 +25,22 @@
           v-model="event.title"
           label="Title"
           type="text"
+          name="title"
+          required 
+          @blur="handleBlur"
+          @focus="handleFocus"
+          :error="st$.title.error ? st$.title.errorMessage : null"
         />
 
         <BaseInput 
           v-model="event.description"
           label="Description"
           type="text"
+          name="description"
+          required 
+          @blur="handleBlur"
+          @focus="handleFocus"
+          :error="st$.description.error ? st$.description.errorMessage : null"
         />
 
       </fieldset>
@@ -35,6 +52,11 @@
           v-model="event.location"
           label="Location"
           type="text"
+          name="location"
+          required 
+          @blur="handleBlur"
+          @focus="handleFocus"
+          :error="st$.location.error ? st$.location.errorMessage : null"
         />
       </fieldset>
       
@@ -87,8 +109,9 @@
 <script>
 import axios from 'axios'
 import { reactive } from '@vue/reactivity'
-import useValidate from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import formValidate from '../composables/formValidate'
+// import useValidate from '@vuelidate/core'
+// import { required } from '@vuelidate/validators'
 
 export default {
   data () {
@@ -124,26 +147,25 @@ export default {
       }
     })
 
-    const rules = {
-      category: { required },
-      title: { required },
-      description: { required },
-      location: { required },
+    const propsForValidation = {
+      category: { required: true },
+      title: { required: true },
+      description: { required: true },
+      location: { required: true },
     }
 
-    const v$ = useValidate(rules, event, { $lazy: true })
+    const { handleBlur, handleFocus, isFormValid, st$ } = formValidate(propsForValidation)
+
+    // const v$ = useValidate(rules, event, { $lazy: true })
 
     const handleSubmit = () => {
-      v$.value.$touch()
-      console.log(v$)
-      if (v$.$error) return
-
+      if (!isFormValid(event)) return
       axios.post(
         endPoint,
         event
       )
       .then(response => {
-        v$.value.$reset()
+        // v$.value.$reset()
         console.log('Response', response)
       })
       .catch(err => {
@@ -153,7 +175,9 @@ export default {
 
     return {
       event,
-      v$,
+      st$,
+      handleBlur,
+      handleFocus,
       handleSubmit,
     }
   }

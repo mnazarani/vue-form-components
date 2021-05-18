@@ -83,6 +83,54 @@
         "music": false
       },
       "id": 7
+    },
+    {
+      "category": "animal welfare",
+      "title": "kyra",
+      "description": "Visit to humane animal shelter",
+      "location": "My house",
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": true
+      },
+      "id": 8
+    },
+    {
+      "category": "food",
+      "title": "Fun Fun",
+      "description": "Lot's of fun",
+      "location": "Paris",
+      "pets": 0,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 9
+    },
+    {
+      "category": "nature",
+      "title": "Fun Fun",
+      "description": "Very funny",
+      "location": "London",
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": false
+      },
+      "id": 10
+    },
+    {
+      "category": "housing",
+      "title": "Housing",
+      "description": "Housing in Houston",
+      "location": "Houston",
+      "pets": 0,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 11
     }
   ]
 }

@@ -19,7 +19,6 @@ export default function formValidate (propObj){
             st$.formValid = false
             let name = e.target.name
             st$[name].error = true 
-            // state[e.target.name].errorMessage = "Name is required"
             if(e.target.validity.valueMissing) {
                 st$[name].errorMessage = `${name} is required`
             } else if (e.target.validity.typeMismatch) {

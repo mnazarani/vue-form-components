@@ -55,19 +55,6 @@ import formValidate from '../composables/formValidate'
 
 export default {
     setup () {
-        // const state = reactive({
-        //     name: {
-        //         value: '',
-        //         error: false,
-        //         errorMessage: ''
-        //     },
-        //     email: {
-        //         value: '',
-        //         error: false,
-        //         errorMessage: ''
-        //     }
-        // })
-
         const state = reactive({
             name: '',
             email: ''
@@ -78,66 +65,9 @@ export default {
             email: { required: true }
         }
 
-        // const createValidationObj = (obj) => {
-        //     let validationObj = {}
-        //     for (let prop in obj){
-        //         validationObj[prop] = { error: false, ErrorMessage: false}
-        //     }
-        //     validationObj['formValid'] = true
-        //     return validationObj
-        // }
-
-        // const st$ = reactive({
-        //     name: {
-        //         error: false,
-        //         ErrorMessage: ''
-        //     },
-        //     email: {
-        //         error: false,
-        //         ErrorMessage: ''
-        //     },
-        //     formValid: true
-        // })
-
-       // const st$ = reactive(createValidationObj(propsForValidation))
-
-
-        // const isFormValid = () => {
-        //     st$.formValid = true
-        //     for (let prop in propsForValidation){
-        //         if (st$[prop].error || (propsForValidation[prop].required && state[prop] === '')) {
-        //             st$.formValid = false
-        //             return false
-        //         }
-        //     }
-        //     return st$.formValid
-            
-        // }
-
         const { handleBlur, handleFocus, isFormValid, st$ } = formValidate(propsForValidation)
 
-
-        // const handleBlur = (e) => {
-        //     if(!e.target.validity.valid){
-        //         st$.formValid = false
-        //         let name = e.target.name
-        //         st$[name].error = true 
-        //         // state[e.target.name].errorMessage = "Name is required"
-        //         if(e.target.validity.valueMissing) {
-        //             st$[name].errorMessage = `${name} is required`
-        //         } else if (e.target.validity.typeMismatch) {
-        //             st$[name].errorMessage = `Please enter a valid ${name}`
-        //         }
-        //     }
-        // }
-
-        // const handleFocus = (e) => {
-        //     st$[e.target.name].error = false 
-        //     st$[e.target.name].errorMessage = ""
-        // }
-
         const handleSubmit = () => {
-            //console.log(isFormValid())
             if (!isFormValid(state)) return 
             console.log(state)
         }

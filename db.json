@@ -1,18 +1,88 @@
 {
-    "events": [
-        {
-            "id": 1,
-            "category": "animal welfare",
-            "title": "Animal Farm",
-            "description": "Very big animal farm",
-            "location": "Tomball",
-            "pets": 1,
-            "extras": {
-                "catering": true,
-                "music": true
-            }
-        }
-    ]
-}    
-    
-    
+  "events": [
+    {
+      "id": 1,
+      "category": "animal welfare",
+      "title": "Animal Farm",
+      "description": "Very big animal farm",
+      "location": "Tomball",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      }
+    },
+    {
+      "category": "animal welfare",
+      "title": "Visit to Safepuppy",
+      "description": "Visit to humane animal shelter",
+      "location": "Houston",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 2
+    },
+    {
+      "category": "food",
+      "title": "Kyra",
+      "description": "Kyra likes food",
+      "location": "My house",
+      "pets": 2,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 3
+    },
+    {
+      "category": "food",
+      "title": "Kyra",
+      "description": "Kyra likes food",
+      "location": "My house",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 4
+    },
+    {
+      "category": "",
+      "title": "",
+      "description": "",
+      "location": "",
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": false
+      },
+      "id": 5
+    },
+    {
+      "category": "animal welfare",
+      "title": "",
+      "description": "",
+      "location": "",
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": false
+      },
+      "id": 6
+    },
+    {
+      "category": "",
+      "title": "",
+      "description": "",
+      "location": "",
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": false
+      },
+      "id": 7
+    }
+  ]
+}

@@ -7,6 +7,8 @@
         label="Select a category"
         v-model="event.category"
         :options="categories"
+        @blur="v$.category.$touch()"
+        :error="v$.category.$error ? 'category is required' : null"
      />
 
       <fieldset>
@@ -84,11 +86,13 @@
 
 <script>
 import axios from 'axios'
+import { reactive } from '@vue/reactivity'
+import useValidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 export default {
   data () {
     return {
-      endPoint : 'https://my-json-server.typicode.com/mnazarani/vue-form-components/events',
       categories: [
         'sustainability',
         'nature',
@@ -98,36 +102,74 @@ export default {
         'food',
         'community'
       ],
-      event: {
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        pets: 0,
-        extras: {
-          catering: false,
-          music: false
-        }
-      },
       petOptions: [
         { label: 'Yes', value: 1},
         { label: 'No', value: 2}
       ]
     }
   },
-  methods: {
-    handleSubmit() {
+  setup () {
+
+    const endPoint = 'http://localhost:3000/events'
+
+    const event = reactive({
+      category: '',
+      title: '',
+      description: '',
+      location: '',
+      pets: 0,
+      extras: {
+        catering: false,
+        music: false
+      }
+    })
+
+    const rules = {
+      category: { required },
+      title: { required },
+      description: { required },
+      location: { required },
+    }
+
+    const v$ = useValidate(rules, event, { $lazy: true })
+
+    const handleSubmit = () => {
+      v$.value.$touch()
+      console.log(v$)
+      if (v$.$error) return
+
       axios.post(
-        this.endPoint,
-        this.event
+        endPoint,
+        event
       )
       .then(response => {
+        v$.value.$reset()
         console.log('Response', response)
       })
       .catch(err => {
         console.log('Error', err)
       })
     }
+
+    return {
+      event,
+      v$,
+      handleSubmit,
+    }
   }
+//   methods: {
+//     handleSubmit() {
+//       axios.post(
+//         this.endPoint,
+//         this.event
+//       )
+//       .then(response => {
+//         console.log('Response', response)
+//       })
+//       .catch(err => {
+//         console.log('Error', err)
+//       })
+//     }
+//   }
 }
 </script>

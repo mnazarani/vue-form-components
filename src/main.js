@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 import './index.css'
 
 // import Base components for global registration
@@ -24,4 +25,4 @@ app.component('BaseRadio', BaseRadio)
 app.component('BaseRadioGroup', BaseRadioGroup)
 
 
-app.use(router).mount('#app')
+app.use(router).use(store).mount('#app')

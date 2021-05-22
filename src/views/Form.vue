@@ -92,7 +92,9 @@
         </div>
       </fieldset>
 
-     
+      <hr>
+
+      {{ extras }}
 
       <hr class="my-4">
 
@@ -109,9 +111,10 @@
 <script>
 import axios from 'axios'
 import { reactive } from '@vue/reactivity'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import formValidate from '../composables/formValidate'
-// import useValidate from '@vuelidate/core'
-// import { required } from '@vuelidate/validators'
+import { computed } from 'vue-demi'
 
 export default {
   data () {
@@ -133,18 +136,31 @@ export default {
   },
   setup () {
 
+    const store = useStore()
+
+    const route = useRouter()
+    
+
     const endPoint = 'http://localhost:3000/events'
 
-    const event = reactive({
-      category: '',
-      title: '',
-      description: '',
-      location: '',
-      pets: 0,
-      extras: {
-        catering: false,
-        music: false
+    const createEventObject = () => {
+      return {
+        category: '',
+        title: '',
+        description: '',
+        location: '',
+        pets: 0,
+        extras: {
+          catering: false,
+          music: false
+        }
       }
+    }
+
+    let event = reactive(createEventObject())
+
+    const extras = computed(() => {
+      return Object.keys(event.extras).filter(key => event.extras[key])
     })
 
     const propsForValidation = {
@@ -165,8 +181,10 @@ export default {
         event
       )
       .then(response => {
-        // v$.value.$reset()
-        console.log('Response', response)
+        event = createEventObject()
+        store.dispatch('addEvent', response.data)
+        console.log('Response', response.data)
+        route.push({name: 'EventList'})
       })
       .catch(err => {
         console.log('Error', err)
@@ -179,21 +197,8 @@ export default {
       handleBlur,
       handleFocus,
       handleSubmit,
+      extras
     }
   }
-//   methods: {
-//     handleSubmit() {
-//       axios.post(
-//         this.endPoint,
-//         this.event
-//       )
-//       .then(response => {
-//         console.log('Response', response)
-//       })
-//       .catch(err => {
-//         console.log('Error', err)
-//       })
-//     }
-//   }
 }
 </script>

@@ -131,6 +131,102 @@
         "music": false
       },
       "id": 11
+    },
+    {
+      "category": "community",
+      "title": "Community Building",
+      "description": "We will build a community of learners",
+      "location": "Houston",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 12
+    },
+    {
+      "category": "animal welfare",
+      "title": "Animal Care",
+      "description": "The participants will learn about animal care.",
+      "location": "Pet Shelter",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 13
+    },
+    {
+      "category": "sustainability",
+      "title": "Housing Bubble",
+      "description": "We will make bubbles inside the house",
+      "location": "Parkway",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 14
+    },
+    {
+      "category": "education",
+      "title": "Education",
+      "description": "Education is a right",
+      "location": "School",
+      "pets": 0,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 15
+    },
+    {
+      "category": "nature",
+      "title": "Nature's way",
+      "description": "Nature is our way",
+      "location": "Natural Land",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 16
+    },
+    {
+      "category": "animal welfare",
+      "title": "Animal World",
+      "description": "Animal Everywhere",
+      "location": "World",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 17
+    },
+    {
+      "category": "sustainability",
+      "title": "Sustainability",
+      "description": "Sustainable Digs",
+      "location": "Digtown",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": true
+      },
+      "id": 18
+    },
+    {
+      "category": "food",
+      "title": "Food Fight",
+      "description": "Fighting by using food as a weapon",
+      "location": "Foodland",
+      "pets": 1,
+      "extras": {
+        "catering": true,
+        "music": false
+      },
+      "id": 19
     }
   ]
 }

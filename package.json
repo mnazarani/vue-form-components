@@ -2,7 +2,7 @@
   "name": "template",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite & json-server --watch db.json",
     "build": "vite build",
     "serve": "vite preview"
   },
@@ -13,7 +13,8 @@
     "axios": "^0.21.1",
     "json-server": "^0.16.3",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.6"
+    "vue-router": "^4.0.6",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.2",

@@ -3,32 +3,21 @@
     <h2 class="text-center font-bold text-gray-600">
         Work Experience
     </h2>
-    <form 
+    <div
         class="p-2 w-2/3 mx-auto"
-        @submit.prevent="handleNext"
     >
         <BaseSelect 
             label="Work Experience"
             name="work"
             :options="workOptions"
             v-model="work"
+            @blur="handleBlur"
+            @focus="handleFocus"
+            required
+            :error="workError ? workErrorMsg : null"
         />
-        <div class="py-4 my-4">
-            <button 
-                type="button"
-                class="bg-gray-500 hover:bg-gray-600 text-gray-50 px-2 py-1 rounded-lg"
-                @click.prevent="handlePrevious"
-            >
-                Prev
-            </button>
-            <button 
-                type="submit"
-                class="bg-green-500 hover:bg-green-400 text-gray-50 px-2 py-1 mr-2 rounded-lg"
-            >
-                Next
-            </button>
-        </div>
-    </form>
+        
+    </div>
 
   </div>
 </template>
@@ -44,12 +33,28 @@ export default {
 
         const work = computed ({
             get () {
-                return store.state.form.work.workExperience
+                return store.state.form.work.work
             },
             set (value) {
                 store.commit('UPDATE_WORK', value)
             }
         })
+
+         const workError = computed(() => {
+            return store.state.validation.validationObj.work.error 
+        })
+
+        const workErrorMsg = computed(() => {
+            return store.state.validation.validationObj.work.errorMessage
+        })
+
+        const handleBlur = (e) => {
+            store.dispatch('handleBlur', e)
+        }
+
+        const handleFocus = (e) => {
+            store.dispatch('handleFocus', e)
+        }
 
         const workOptions = [
             'Less than 1 year',
@@ -57,20 +62,13 @@ export default {
             'More than 5 years'
         ]
 
-        const handleNext = () => {
-            store.dispatch('nextComponent')
-            console.log("handle next")
-        }
-
-        const handlePrevious = () => {
-            store.dispatch('previousComponent')
-        }
-
         return {
-            handleNext,
-            handlePrevious,
             workOptions,
             work,
+            workError,
+            workErrorMsg,
+            handleFocus,
+            handleBlur
         }
     }
 

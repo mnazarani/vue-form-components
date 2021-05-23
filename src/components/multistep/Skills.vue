@@ -3,9 +3,8 @@
     <h2 class="text-center font-bold text-gray-600">
         Tells about your skills
     </h2>
-    <form 
+    <div
         class="p-2 w-2/3 mx-auto"
-        @submit.prevent="handleNext"
     >
         <BaseCheckbox
             label="MS Word"
@@ -20,22 +19,7 @@
             v-model="skills.quickbooks"
         />
 
-        <div class="py-4 my-4">
-            <button 
-                type="button"
-                class="bg-gray-500 hover:bg-gray-600 text-gray-50 px-2 py-1 mr-2 rounded-lg"
-                @click.prevent="handlePrevious"
-            >
-                Prev
-            </button>
-            <button 
-                type="submit"
-                class="bg-green-500 hover:bg-green-400 text-gray-50 px-2 py-1 rounded-lg"
-            >
-                Next
-            </button>
-        </div>
-    </form>
+    </div>
 
   </div>
 </template>
@@ -52,7 +36,7 @@ export default {
         const skills = computed({
             get() {
                 console.log(store.state.form.skills.skills)
-                return store.state.form.skills
+                return store.state.form.skills.skills
             },
             // set (value) {
             //     console.log('In set', value)
@@ -60,17 +44,7 @@ export default {
             // }
         })
 
-        const handleNext = () => {
-            store.dispatch('nextComponent')
-        }
-
-        const handlePrevious = () => {
-            store.dispatch('previousComponent')
-        }
-
         return {
-            handleNext,
-            handlePrevious,
             skills
         }
     }

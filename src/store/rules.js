@@ -3,5 +3,5 @@
 export default {
     name: { required: true},
     email: { required: true},
-    workExperience: { required: true},
+    work: { required: true},
 }

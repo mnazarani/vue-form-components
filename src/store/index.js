@@ -17,7 +17,7 @@ const state = {
     form: {
         personal: {name: ''},
         contact: {email: ''},
-        work: {workExperience: ''},
+        work: {work: ''},
         skills: {
             skills: {
             ms_word: false,
@@ -45,12 +45,11 @@ const mutations = {
         state.form.personal.name = name
     },
     UPDATE_EMAIL (state, email) {
-        console.log(email)
-        state.form.personal.email = email
+        state.form.contact.email = email
     },
     UPDATE_WORK (state, work) {
         console.log(work)
-        state.form.work.workExperience = work
+        state.form.work.work = work
     },
     UPDATE_SKILLS (state, skills) {
         console.log('skills',skills)
@@ -79,7 +78,9 @@ const actions = {
 
 // getters
 const getters = {
-    getEventsCount: state => state.events.length
+    getEventsCount: state => state.events.length,
+
+    currentComponent: state => state.componentList[state.currentComponentIndex]
 }
 
 // Crate and export Vuex instance

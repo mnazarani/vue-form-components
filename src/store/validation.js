@@ -73,9 +73,10 @@ const actions = {
 
     // checks form beore submission for missing values
     checkForm: ({ commit, state, rootState }, currentSection) => {
-        console.log('In checkForm')
+        console.log('In checkForm - current section: ', currentSection)
         if (state.formErrors) return
         for (let prop in rootState.form[currentSection]){
+            if (!state.validationObj.hasOwnProperty(prop)) continue
             // check if any prop has error or any required field is missing
             // if any of it true then set the global flag to false
             console.log('In checkForm, before if statement')

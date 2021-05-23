@@ -3,32 +3,21 @@
     <h2 class="text-center font-bold text-gray-600">
         Contact Information
     </h2>
-    <form 
+    <div
         class="p-2 w-2/3 mx-auto"
-        @submit.prevent="handleNext"
     >
         <BaseInput 
             label="Email"
             type="email"
             name="email"
             v-model="email"
+            @blur="handleBlur"
+            @focus="handleFocus"
+            required
+            :error="emailError ? emailErrorMsg : null"
         />
-        <div class="py-4 my-4">
-            <button 
-                type="button"
-                class="bg-gray-500 hover:bg-gray-600 text-gray-50 px-2 py-1 rounded-lg mr-2"
-                @click.prevent="handlePrevious"
-            >
-                Prev
-            </button>
-            <button 
-                type="submit"
-                class="bg-green-500 hover:bg-green-400 text-gray-50 px-2 py-1 rounded-lg"
-            >
-                Next
-            </button>
-        </div>
-    </form>
+       
+    </div>
 
   </div>
 </template>
@@ -51,18 +40,29 @@ export default {
             }
         })
 
-        const handleNext = () => {
-            store.dispatch('nextComponent')
+        const emailError = computed(() => {
+            return store.state.validation.validationObj.email.error 
+        })
+
+        const emailErrorMsg = computed(() => {
+            return store.state.validation.validationObj.email.errorMessage
+        })
+
+        const handleBlur = (e) => {
+            store.dispatch('handleBlur', e)
         }
 
-        const handlePrevious = () => {
-            store.dispatch('previousComponent')
+        const handleFocus = (e) => {
+            store.dispatch('handleFocus', e)
         }
+
 
         return {
-            handleNext,
-            handlePrevious,
             email,
+            emailError,
+            emailErrorMsg,
+            handleBlur,
+            handleFocus,
         }
     }
 

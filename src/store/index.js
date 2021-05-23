@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import validation from './validation'
 
 // root state object.
 const state = {
@@ -82,5 +83,8 @@ export default createStore({
     state,
     getters,
     actions,
-    mutations 
+    mutations,
+    modules: {
+        validation
+    }
 })

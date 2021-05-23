@@ -6,13 +6,19 @@
     <form 
         class="p-2 w-2/3 mx-auto"
         @submit.prevent="handleNext"
+        novalidate
     >
         <BaseInput 
             label="Name"
             type="text"
             name="name"
             v-model="name"
+            @blur="handleBlur"
+            required
+            :error="nameError ? nameErrorMsg : null"
         />
+
+        
         <div class="py-4 my-4">
             <button 
                 type="submit"
@@ -44,13 +50,33 @@ export default {
             }
         })
 
+        const formValid = computed(() => {
+            return store.state.validation.formValid
+        })
+
+        const nameError = computed(() => {
+            return store.state.validation.validationObj.name.error 
+        })
+
+        const nameErrorMsg = computed(() => {
+            return store.state.validation.validationObj.name.errorMessage
+        })
+
+        const handleBlur = (e) => {
+            store.dispatch('handleBlur', e)
+        }
+
         const handleNext = () => {
+            if (!formValid) return
             store.dispatch('nextComponent')
         }
 
         return {
             handleNext,
+            handleBlur,
             name,
+            nameError,
+            nameErrorMsg
         }
     }
 

@@ -14,10 +14,10 @@
             name="name"
             v-model="name"
             @blur="handleBlur"
+            @focus="handleFocus"
             required
             :error="nameError ? nameErrorMsg : null"
         />
-
         
         <div class="py-4 my-4">
             <button 
@@ -43,7 +43,7 @@ export default {
 
         const name = computed({
             get () {
-                return store.state.name 
+                return store.state.form.personal.name 
             },
             set (value) {
                 store.commit('UPDATE_NAME', value)
@@ -52,6 +52,10 @@ export default {
 
         const formValid = computed(() => {
             return store.state.validation.formValid
+        })
+
+        const formErrors = computed(() => {
+            return store.state.validation.formErrors
         })
 
         const nameError = computed(() => {
@@ -66,17 +70,25 @@ export default {
             store.dispatch('handleBlur', e)
         }
 
+        const handleFocus = (e) => {
+            store.dispatch('handleFocus', e)
+        }
+
         const handleNext = () => {
-            if (!formValid) return
+            console.log('handleNext', formErrors.value)
+            store.dispatch('checkForm', 'personal')
+            if (formErrors.value) return
             store.dispatch('nextComponent')
         }
 
         return {
             handleNext,
             handleBlur,
+            handleFocus,
             name,
             nameError,
-            nameErrorMsg
+            nameErrorMsg,
+            formValid,
         }
     }
 

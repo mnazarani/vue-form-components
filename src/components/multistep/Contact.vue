@@ -44,7 +44,7 @@ export default {
 
         const email = computed({
             get () {
-                return store.state.email
+                return store.state.form.contact.email
             },
             set (value) {
                 store.commit('UPDATE_EMAIL', value)

@@ -14,14 +14,19 @@ const state = {
     ],
     currentComponentIndex: 0,
     // form data
-    name: '',
-    email: '',
-    workExperience: '',
-    skills: {
-        ms_word: false,
-        ms_excel: false,
-        quickbooks: false
+    form: {
+        personal: {name: ''},
+        contact: {email: ''},
+        work: {workExperience: ''},
+        skills: {
+            skills: {
+            ms_word: false,
+            ms_excel: false,
+            quickbooks: false
+            } 
+        }
     }
+    
 }
 
 // mutations
@@ -37,20 +42,19 @@ const mutations = {
         }
     },
     UPDATE_NAME (state, name) {
-        console.log(name)
-        state.name = name
+        state.form.personal.name = name
     },
     UPDATE_EMAIL (state, email) {
         console.log(email)
-        state.email = email
+        state.form.personal.email = email
     },
     UPDATE_WORK (state, work) {
         console.log(work)
-        state.workExperience = work
+        state.form.work.workExperience = work
     },
     UPDATE_SKILLS (state, skills) {
         console.log('skills',skills)
-        state.skills = skills
+        state.form.skills.skills = skills
     },
 
 

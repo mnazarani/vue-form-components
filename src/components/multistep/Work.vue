@@ -44,7 +44,7 @@ export default {
 
         const work = computed ({
             get () {
-                return store.state.workExperience
+                return store.state.form.work.workExperience
             },
             set (value) {
                 store.commit('UPDATE_WORK', value)

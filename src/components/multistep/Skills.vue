@@ -51,8 +51,8 @@ export default {
 
         const skills = computed({
             get() {
-                console.log(store.state.skills)
-                return store.state.skills
+                console.log(store.state.form.skills.skills)
+                return store.state.form.skills
             },
             // set (value) {
             //     console.log('In set', value)

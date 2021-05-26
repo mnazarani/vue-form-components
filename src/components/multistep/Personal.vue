@@ -15,7 +15,16 @@
             :error="nameError ? nameErrorMsg : null"
         />
     </div>
-
+    <div>
+        <h3>Gender:</h3>
+          <BaseRadioGroup 
+            v-model="gender"
+            name="gender"
+            :options="genderOptions"
+            vertical
+          />
+     </div>
+        {{ gender }}
   </div>
 </template>
 
@@ -36,6 +45,20 @@ export default {
                 store.commit('UPDATE_NAME', value)
             }
         })
+
+        const gender = computed({
+            get () {
+                return store.state.form.personal.gender 
+            },
+            set (value) {
+                store.commit('UPDATE_GENDER', value)
+            }
+        })
+
+        const genderOptions = [
+        { label: 'Male', value: 1},
+        { label: 'Female', value: 0}
+      ]
         
         const nameError = computed(() => {
             return store.state.validation.validationObj.name.error 
@@ -53,10 +76,14 @@ export default {
             store.dispatch('handleFocus', e)
         }
 
+        console.log('In Personal and her is the gender property: ', gender)
+
         return {
             handleBlur,
             handleFocus,
             name,
+            gender,
+            genderOptions,
             nameError,
             nameErrorMsg
         }

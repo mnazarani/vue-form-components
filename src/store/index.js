@@ -15,7 +15,7 @@ const state = {
     currentComponentIndex: 0,
     // form data
     form: {
-        personal: {name: ''},
+        personal: {name: '', gender: ''},
         contact: {email: ''},
         work: {work: ''},
         skills: {
@@ -39,6 +39,9 @@ const mutations = {
     },
     UPDATE_NAME (state, name) {
         state.form.personal.name = name
+    },
+    UPDATE_GENDER (state, gender) {
+        state.form.personal.gender = gender 
     },
     UPDATE_EMAIL (state, email) {
         state.form.contact.email = email

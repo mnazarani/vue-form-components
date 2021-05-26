@@ -25,7 +25,7 @@
         <input type="checkbox" v-model="skills" value="quickbooks" id="qkb">
         <label for="qkb">Quickbooks</label>
     </div>
-
+        {{ skills }}
   </div>
 </template>
 

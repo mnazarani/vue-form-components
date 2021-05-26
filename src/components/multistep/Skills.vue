@@ -6,7 +6,7 @@
     <div
         class="p-2 w-2/3 mx-auto"
     >
-        <BaseCheckbox
+        <!-- <BaseCheckbox
             label="MS Word"
             v-model="skills.ms_word"
         />
@@ -17,8 +17,13 @@
         <BaseCheckbox
             label="MS Quickbooks"
             v-model="skills.quickbooks"
-        />
-
+        /> -->
+        <input type="checkbox" v-model="skills" value="ms_word" id="msw">
+        <label for="msw">MS Word</label>
+        <input type="checkbox" v-model="skills" value="ms_excel" id="msx">
+        <label for="msx">MS Excel</label>
+        <input type="checkbox" v-model="skills" value="quickbooks" id="qkb">
+        <label for="qkb">Quickbooks</label>
     </div>
 
   </div>
@@ -35,13 +40,11 @@ export default {
 
         const skills = computed({
             get() {
-                console.log(store.state.form.skills.skills)
                 return store.state.form.skills.skills
             },
-            // set (value) {
-            //     console.log('In set', value)
-            //     store.commit('UPDATE_SKILLS', value)
-            // }
+            set (value) {
+                store.commit('UPDATE_SKILLS', value)
+            }
         })
 
         return {

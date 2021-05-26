@@ -36,6 +36,9 @@
         {{ st$.email.errorMessage }}
     </p>
 
+    
+
+
 
 
 
@@ -47,6 +50,8 @@
     </button>
 
   </form>
+
+
 </template>
 
 <script>
@@ -77,7 +82,7 @@ export default {
             st$,
             handleSubmit,
             handleBlur,
-            handleFocus
+            handleFocus,
         }
     }
 

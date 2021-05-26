@@ -19,11 +19,7 @@ const state = {
         contact: {email: ''},
         work: {work: ''},
         skills: {
-            skills: {
-            ms_word: false,
-            ms_excel: false,
-            quickbooks: false
-            } 
+            skills: []
         }
     }
     
@@ -52,7 +48,6 @@ const mutations = {
         state.form.work.work = work
     },
     UPDATE_SKILLS (state, skills) {
-        console.log('skills',skills)
         state.form.skills.skills = skills
     },
 
